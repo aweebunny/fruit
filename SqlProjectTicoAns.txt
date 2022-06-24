@@ -1,0 +1,184 @@
+Princess Ruruna and Cain are preparing to get married. Hooray! But before they can say their vows, they have to make sure everything in the Kingdom of Kod is in order. If you find yourself in a rut, feel free to refer to Tico for some guidance (contains suggestions for statements to run in order to get the answers). 
+
+1) Basic query
+Princess Ruruna: Cain, could you show me the whole product table again?
+
+Tico: SELECT * FROM product;
+
+2) Conditional query
+King Kod: Dear daughter, I'm afraid we're short on cash for some of the decorations. Which fruit are we selling for more than 200 Gold per pound?
+
+Tico: SELECT * FROM product WHERE price > 200;
+
+3) Pattern matching
+Prince Raminess: Princess Ruruna! I arrived as soon as I heard the good news. I'm only sorry to hear that you won't be wed to someone quite as dashing as myself. 
+Princess Ruruna: ...
+Prince Raminess: I brought over some tropical fruit from my homeland, it's called...'ch' something. At least it has 'ch' in the name. Well it's certainly in your table somewhere, it contains the characters 'ch'. 
+Cain: Princess, what fruit is the Prince talking about?
+
+Tico: When you want to find WHERE a specified pattern in a column is, you can use LIKE and use % wildcard. The percent sign (%) represents zero, one, or multiple characters.
+SELECT * FROM product WHERE name LIKE '%ch%';
+
+4a) Sorted search
+Kolone: Princess, the Overseas Business minister is here to see you. They're hoping you could help order the fruit in alphabetical order by name like how they have it in their kingdom. I'm curious, what does that look like?
+
+
+Tico: SELECT * FROM product ORDER BY name;
+
+4b) Sorted search
+Overseas Business Minister: Wait, do you mean A-Z? No, no, NO! We have it in DESCENDING order in our kingdom. Please Princess, could you fix this problem?
+
+Tico: SELECT * FROM product ORDER BY name DESC;
+
+5) Aggregating & grouping
+Kolone: Princess, I've received word that the Export Minister had a few requests. He wants to know the following:
+-The total number of fruit in kilograms that we've exported this year
+-The largest amount of a single type of fruit exported this year
+-The smallest price of a single type of fruit exported this year
+
+Tico: 
+SELECT SUM(exportedKilograms) FROM product;
+SELECT MAX(exportedKilograms) FROM Products;
+SELECT MIN(price) FROM Products;
+
+6) Create table
+Cain: Princess!!! Tico went to a new country and discovered some rare herbs we can produce in the kingdom! They have different properties than fruit, so I think we'll want to keep them in a different table. I'll have our alchemists start experimenting on the uses and risks. I think we should call the table 'herbs'. Each herb has a name (string), price (number), explosive (true/false), and alchemy notes (string).
+
+Tico: 
+CREATE TABLE herbs (
+    name string,
+    price number,
+    explosive bit,
+    alchemyNotes string
+); 
+
+7) Insert a row
+Cain: Tico sent us some notes on herbs we can add to sell, we're definitely going to meet our quota for the wedding! Could we add these herbs to the new table we just made?
+ginger
+500$
+not explosive
+alchemyNotes: green
+
+garlic
+299$
+not explosive
+alchemyNotes: purple
+
+basil
+109$
+explosive
+alchemyNotes: blue
+
+banana
+359$
+explosive
+alchemyNotes: orange
+
+Tico: 
+INSERT INTO herbs VALUES (ginger, 500, 0, "green");
+INSERT INTO herbs VALUES (garlic, 299, 0, "purple");
+INSERT INTO herbs VALUES (basil, 109, 1, "blue");
+INSERT INTO herbs VALUES (banana, 359, 1, "orange");
+
+8) Update a row
+Princess Ruruna: Cain...I can't believe you wrote 'orange'. Bananas are yellow. Please update that value in the table. 
+
+Tico:
+UPDATE herbs
+SET alchemyNotes = "yellow"
+WHERE name = 'banana';
+
+9) Delete a row
+Princess Ruruna: Actually. Cain. Banana is a fruit? What is it even doing in the herbs table? Let's delete that row before we confuse ourselves any further.
+
+Tico:
+DELETE FROM herbs
+WHERE name = 'banana';
+
+10) Join tables
+Prince Raminess: Princess! Good news!
+Princess Ruruna: Raminess, you better not be meddling with our marriage plans. 
+Prince Raminess: What? Never! On the contrary, it seems that your neighboring countries to the East and West heard about databases and are testing the waters on this SQL stuff. Tico taught them how to create tables and here's what they came up with. How about you and Cain join the tables so we can easily display all the fruits in their regions? I bet they'll reward you handsomely, as handsome as I am! 
+
+CREATE TABLE eastProduce 
+(
+	product_code int NOT NULL,
+	product_name varchar(255),
+	unit_price int,
+	remark varchar(255) NULL,
+	PRIMARY KEY(product_code)
+);
+INSERT INTO product(product_code,product_name,unit_price,remark)
+VALUES(1101,'Rambutan',420);
+INSERT INTO product(product_code,product_name,unit_price)
+VALUES(1102,'Durian',66);
+INSERT INTO product(product_code,product_name,unit_price)
+VALUES(1103,'Mangosteen',789);
+INSERT INTO product(product_code,product_name,unit_price,remark)
+VALUES(1104,'Longan',456);
+INSERT INTO product(product_code,product_name,unit_price)
+VALUES(1200,'Jackfruit',256,'with seeds and pith');
+INSERT INTO product(product_code,product_name,unit_price,remark)
+VALUES(1201,'Sapodilla',50);
+INSERT INTO product(product_code,product_name,unit_price)
+VALUES(1202,'Dragon fruit',756, 'in demand');
+INSERT INTO product(product_code,product_name,unit_price)
+VALUES(1301,'Starfruit',963);
+INSERT INTO product(product_code,product_name,unit_price,remark)
+VALUES(1302,'Passion fruit',212, 'mild');
+
+CREATE TABLE eastProduce 
+(
+	product_code int NOT NULL,
+	product_name varchar(255),
+	unit_price int,
+	remark varchar(255) NULL,
+	PRIMARY KEY(product_code)
+);
+INSERT INTO product(product_code,product_name,unit_price,remark)
+VALUES(2101,'Cherimoya',159);
+INSERT INTO product(product_code,product_name,unit_price)
+VALUES(2102,'Kiwano',156, 'horned melon');
+INSERT INTO product(product_code,product_name,unit_price)
+VALUES(2103,'Korean Melon',753);
+INSERT INTO product(product_code,product_name,unit_price,remark)
+VALUES(2104,'Feijoa ',153, 'pineapple guava');
+INSERT INTO product(product_code,product_name,unit_price)
+VALUES(2200,'Guava',423,'pink inside');
+INSERT INTO product(product_code,product_name,unit_price,remark)
+VALUES(2201,'Tamarillo ',200, 'tree tomato');
+INSERT INTO product(product_code,product_name,unit_price)
+VALUES(2202,'Loquat',222);
+INSERT INTO product(product_code,product_name,unit_price)
+VALUES(2301,'Sour Plum',100, 'green not purple');
+INSERT INTO product(product_code,product_name,unit_price,remark)
+VALUES(2302,'Physalis ',111, 'golden berries');
+
+Tico: 
+SELECT westProduce.product_code, westProduce.product_name, westProduce.unit_price, westProduce.remark,
+eastProduce.product_code, eastProduce.product_name, eastProduce.unit_price, eastProduce.remark
+FROM westProduce
+FULL OUTER JOIN eastProduce ON westProduce.product_code=eastProduce.product_code;
+
+11) Create a view
+King Kod: Daughter, I find myself checking on the least expensive fruits quite often, so I can tell your mom what the deal of the day is! Ohohoho! Could you create a view for me so I can query the view instead of the table?
+
+Tico: 
+CREATE VIEW [King Kod's Cheap Fruit Deals] AS
+SELECT product_code, product_name, unit_price
+FROM product
+WHERE unit_price < 100;
+
+And to query the view:
+SELECT * FROM [King Kod's Cheap Fruit Deals];
+
+12) Delete a table
+Princess Ruruna: Cain, good news. The countries around us have reached the end of their negotiations and decided that they'll just be using the eastProduce table and no longer need the westProduce table. Let's drop the westProduce table so we don't get confused in the future!
+
+Tico: DROP TABLE westProduce;
+
+13) Delete a view
+King Kod: Oh Ruruna, it looks like your mother is tired of my frugal ways and no longer cares to see my King Kod's Cheap Fruit Deals view. Be a dear and remove it from the database, will you?
+
+Tico: DROP VIEW King Kod's Cheap Fruit Deals;
+
