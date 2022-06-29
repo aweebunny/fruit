@@ -1,0 +1,71 @@
+Princess Ruruna and Cain are preparing to get married. Hooray! But before they can say their vows, they have to make sure everything in the Kingdom of Kod is in order. Run the shell script to create the database fruit.db containing tables product, sales_statement, sales, and export_destination.
+
+1) Basic query
+Princess Ruruna: Cain, could you show me the whole product table again?
+
+2) Conditional query
+King Kod: Dear daughter, I'm afraid we're short on cash for some of the decorations. Which fruit are we selling for more than 200 Gold per pound?
+
+3) Pattern matching
+Prince Raminess: Princess Ruruna! I arrived as soon as I heard the good news. I'm only sorry to hear that you won't be wed to someone quite as dashing as myself. 
+Princess Ruruna: ...
+Prince Raminess: I brought over some tropical fruit from my homeland, it's called...'ch' something. At least it has 'ch' in the name. Well it's certainly in your table somewhere, it contains the characters 'ch'. 
+Cain: Princess, what fruit is he talking about?
+
+4a) Sorted search
+Kolone: Princess, the Overseas Business minister is here to see you. They're hoping you could help order the fruit in alphabetical order by name like how they have it in their kingdom. I'm curious, what does that look like?
+
+4b) Sorted search
+Overseas Business Minister: Wait, do you mean A-Z? No, no, NO! We have it in DESCENDING order in our kingdom. Please Princess, could you fix this problem?
+
+5) Aggregating & grouping
+Kolone: Princess, I've received word that the Export Minister had a few requests. He wants to know the following:
+-The total number of fruit that we've exported this year, which should be the 'quantity' found in the sales_statement table
+-The largest quantity of fruit exported this year
+-The smallest quantity of fruit exported this year
+
+6) Create table
+Cain: Princess!!! Tico went to a new country and discovered some rare herbs we can produce in the kingdom! They have different properties than fruit, so I think we'll want to keep them in a different table. I'll have our alchemists start experimenting on the uses and risks. I think we should call the table 'herbs'. Each herb has a name (string), price (number), explosive (true/false), and alchemy notes (string). 
+
+7) Insert a row
+Cain: Tico sent us some notes on herbs we can add to sell, we're definitely going to meet our quota for the wedding! Could we add these herbs to the new table we just made, and query it to make sure we have all the herbs we need?
+
+ginger
+500$
+not explosive
+alchemy_notes: green
+
+garlic
+299$
+not explosive
+alchemy_notes: purple
+
+basil
+109$
+explosive
+alchemy_notes: blue
+
+banana
+359$
+explosive
+alchemy_notes: orange
+
+8) Update a row
+Princess Ruruna: Cain...I can't believe you wrote 'orange'. Bananas are yellow. Please update that value in the table. 
+
+9) Delete a row
+Princess Ruruna: Actually. Cain. Banana is a fruit? What is it even doing in the herbs table? Let's delete that row before we confuse ourselves any further.
+
+10) Join tables
+Cain: Princess! I'm running the numbers for the banquet. What quantity of melons did we sell, based on the sales_statement table? Could we try to left join the product and sales_statment tables?
+
+11) Create a view
+King Kod: Daughter, I find myself checking on the least expensive fruits quite often, so I can tell your mom what the deal of the day is! Ohohoho! Could you create a view for me so I can query the view instead of the table?
+
+12) Delete a table
+Princess Ruruna: Cain, good news. Prince Raminess has decided to take responsibilty for the herbs table, and we've transferred all of the information to him. Let's clean up the database and drop the herbs table. 
+
+13) Delete a view
+King Kod: Oh Ruruna, it looks like your mother is tired of my frugal ways and no longer cares to see my King Kod's Cheap Fruit Deals view. Be a dear and remove it from the database, will you?
+
+
